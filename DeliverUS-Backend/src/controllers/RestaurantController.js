@@ -50,6 +50,7 @@ const create = async function (req, res) {
 const show = async function (req, res) {
   // Only returns PUBLIC information of restaurants
   try {
+    const restaurant2 = await Restaurant.findByPk(req.params.restaurantId)
     const restaurant = await Restaurant.findByPk(req.params.restaurantId, {
       attributes: { exclude: ['userId'] },
       include: [{
@@ -61,7 +62,7 @@ const show = async function (req, res) {
         model: RestaurantCategory,
         as: 'restaurantCategory'
       }],
-      order: [[{ model: Product, as: 'products' }, 'order', 'ASC']]
+      order: [[{ model: Product, as: 'products' }, restaurant2.orderType, 'ASC']]
     }
     )
     res.json(restaurant)
