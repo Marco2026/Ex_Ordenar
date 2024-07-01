@@ -59,6 +59,13 @@ const loadModel = (sequelize, DataTypes) => {
         'temporarily closed'
       ]
     },
+    orderType: {
+      type: DataTypes.ENUM,
+      values: [
+        'order',
+        'price'
+      ]
+    },
     restaurantCategoryId: {
       allowNull: false,
       type: DataTypes.INTEGER
