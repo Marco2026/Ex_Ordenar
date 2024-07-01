@@ -95,12 +95,28 @@ const destroy = async function (req, res) {
   }
 }
 
+const toggleOrderType = async function (req, res) {
+  try {
+    const restaurant = await Restaurant.findByPk(req.params.restaurantId)
+    if(restaurant.orderType === 'order') {
+      restaurant.orderType = 'price'
+    } else {
+      restaurant.orderType = 'order'
+    }
+    await restaurant.save()
+    res.json(restaurant)
+  } catch (err) {
+    res.status(500).send(err)
+  }
+}
+
 const RestaurantController = {
   index,
   indexOwner,
   create,
   show,
   update,
-  destroy
+  destroy,
+  toggleOrderType
 }
 export default RestaurantController
