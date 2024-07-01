@@ -56,6 +56,14 @@ module.exports = {
         ],
         defaultValue: 'offline'
       },
+      orderType: {
+        type: Sequelize.ENUM,
+        values: [
+          'order',
+          'price'
+        ],
+        defaultValue: 'order'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
